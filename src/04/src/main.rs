@@ -18,29 +18,29 @@ fn solve_1(input: &str) -> u32 {
 }
 
 fn solve_2(input: &str) -> u32 {
-    let mut counts = Vec::new();
-    for (i, n) in input
+    let mut counts = input
         .lines()
         .map(|l| {
             let (winning, owned) = l.split_once(':').unwrap().1.split_once(" | ").unwrap();
             let (winning, mut owned) = (parse(winning), parse(owned));
             owned.retain(|o| winning.iter().any(|w| w == o));
-            owned.len()
-        })
-        .enumerate()
-    {
-        if counts.get(i).is_none() {
-            counts.push(0);
-        }
-        counts[i] += 1;
-        for j in 1..=n {
-            if counts.get(i + j).is_none() {
-                counts.push(0);
+            (1u32, owned.len() as u32)
+        }).collect::<Vec<_>>();
+    
+    fn recur(ns: &mut [(u32, u32)]) -> u32 {
+        match ns.first() {
+            Some((n, wins)) => {
+                let n = *n;
+                for i in 1..=*wins {
+                    ns[i as usize].0 += n;
+                }
+                n + recur(&mut ns[1..])
             }
-            counts[i + j] += counts[i];
+            None => 0,
         }
     }
-    counts.into_iter().sum()
+
+    recur(&mut counts)
 }
 
 fn main() {
