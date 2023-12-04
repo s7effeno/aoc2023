@@ -1,6 +1,9 @@
 fn solve_1(input: &str) -> u32 {
     fn first_digit<I: Iterator<Item = char>>(mut iter: I) -> u32 {
-        iter.find(|c| c.is_ascii_digit()).unwrap().to_digit(10).unwrap()
+        iter.find(|c| c.is_ascii_digit())
+            .unwrap()
+            .to_digit(10)
+            .unwrap()
     }
     input
         .lines()
