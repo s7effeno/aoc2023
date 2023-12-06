@@ -25,8 +25,9 @@ fn solve_2(input: &str) -> u32 {
             let (winning, mut owned) = (parse(winning), parse(owned));
             owned.retain(|o| winning.iter().any(|w| w == o));
             (1u32, owned.len() as u32)
-        }).collect::<Vec<_>>();
-    
+        })
+        .collect::<Vec<_>>();
+
     fn recur(ns: &mut [(u32, u32)]) -> u32 {
         match ns.first() {
             Some((n, wins)) => {
