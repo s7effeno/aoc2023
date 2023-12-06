@@ -1,0 +1,28 @@
+[package]
+name = "aoc2023"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "01"
+path = "src/01/src/main.rs"
+
+[[bin]]
+name = "02"
+path = "src/02/src/main.rs"
+
+[[bin]]
+name = "03"
+path = "src/03/src/main.rs"
+
+[[bin]]
+name = "04"
+path = "src/04/src/main.rs"
+
+[[bin]]
+name = "05"
+path = "src/05/src/main.rs"
+
+[[bin]]
+name = "06"
+path = "src/06/src/main.rs"
